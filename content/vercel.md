@@ -3,8 +3,6 @@ title = "Vercel 与 Next.js：开源全明星团队背后的商业逻辑"
 date = 2022-01-09
 category = "Open Source"
 
-[taxonomies]
-tags = ["vercel", "nextjs", "open source"]
 +++
 
 ## 引子
@@ -92,7 +90,7 @@ Next.js 为了实现后端渲染，重度使用了 JS 生态中的打包构建�
 
 在大家被 Vercel 接连不断的重磅招聘吸引之时，2021 年底他们又宣布了全年最后一个大新闻，React 核心团队的灵魂人物 Sebastian Markbåge 也将加入 Vercel。作为 构建在 React 之上的框架，Next.js 的未来与 React 的演进息息相关。尤其是在 React 团队提出 server component 的概念之后，Next.js 的后端渲染与官方方案是否能够有机结合，都离不开 Sebastian 的技术视野以及在 React 项目中的话语权。
 
-随着开源全明星团队的建成，Vercel 从构建工具、编译器到开发框架的产品矩阵也更加完整。与通常认知里开源会带来商业风险不同的是，Vercel通过在一众核心开源项目中招聘核心成员、获得话语权，反而成为了开发者无法绕开的开源依赖，开发者们对开源项目的粘性帮助 Vercel 进一步构建了商业上的护城河。
+随着开源全明星团队的建成，Vercel 从构建工具、编译器到开发框架的产品矩阵也更加完整。与通常认知里开源会带来商业风险不同的是，Vercel 通过在一众核心开源项目中招聘核心成员、获得话语权，反而成为了开发者无法绕开的开源依赖，开发者们对开源项目的粘性帮助 Vercel 进一步构建了商业上的护城河。
 
 ## 预测：Vercel 的未来与挑战
 
@@ -105,6 +103,3 @@ Next.js 为了实现后端渲染，重度使用了 JS 生态中的打包构建�
 最后则是与其余厂商之间的竞争。同类厂商如 Netlify 不必多说，一定会在产品与技术上持续对 Vercel 产生压力，而 Vercel 背后所使用的 AWS、Cloudflare 等巨头也将带来巨大的挑战。AWS 拥有功能强大的 Amplify，Cloudflare 的 Pages 与 Workers 服务也在获得更多的客户，而他们在价格与集成度上的优势也许是 Vercel 无法逾越的屏障。
 
 不过无论如何，Guillermo 与 Vercel 已经足够神奇，也在开源与商业化的结合方式上给大家带来了新的思路。
-
-
-

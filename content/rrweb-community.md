@@ -4,9 +4,6 @@ title = "The new adventure of the rrweb community"
 date = 2020-10-04
 category = "rrweb"
 
-[taxonomies]
-tags = ["rrweb"]
-
 +++
 
 [中文版](/rrweb-community-cn)

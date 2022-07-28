@@ -3,9 +3,6 @@ title = "vue-type-check: Vue 模板中的 Typescript 类型检查"
 date = 2019-10-02
 category = "Vue"
 
-[taxonomies]
-tags = ["Vue", "Typescript"]
-
 +++
 
 越来越多人开始尝试使用 Typescript 编写他们的 Vue 项目，Vue 本身也在不断加强对 Typescript 的支持（官方提供 vue-class-component 库、使用 Typescript 编写 Vue 3.0 等），但是对于组件中模板部分的类型检查仍然有很大的局限性。
@@ -37,14 +34,14 @@ export default Vue.extend({
   name: "app",
   data() {
     return {
-      message: "Hello World!"
+      message: "Hello World!",
     };
   },
   methods: {
     printMessage() {
       console.log(this.message.toFixed(1));
-    }
-  }
+    },
+  },
 });
 </script>
 ```

@@ -3,9 +3,6 @@ title = "代码之上：我们落地 GraphQL 背后的故事"
 date = 2020-05-10
 category = "GraphQL"
 
-[taxonomies]
-tags = ["GraphQL"]
-
 +++
 
 GraphQL 经常被打上“好东西，但是难以落地”的标签，很多尝试 GraphQL 的团队也经历了“从入门到放弃”的痛苦。而我们能够在过去一年多的时间里让 GraphQL 在项目中平稳落地，其背后是一个技术决策、工程管理和代码相结合的有趣故事。

@@ -3,8 +3,6 @@ title = "Syncit: a privacy-first co-browsing tool"
 date = 2020-06-21
 category = "syncit"
 
-[taxonomies]
-tags = ["syncit", "rrweb"]
 +++
 
 Today I'm happy to share my new open-source project: [Syncit](https://syncit.luckid.io/), which is a co-browsing tool. It works like TeamViewer in the browser but provides better performance and privacy protection without downloading client.

@@ -3,9 +3,6 @@ title = "GraphQL 客户端缓存的正确打开方式"
 date = 2019-08-19
 category = "GraphQL"
 
-[taxonomies]
-tags = ["GraphQL", "data-layer", "cache"]
-
 +++
 
 一个设计精巧的缓存不仅可以让客户端在运行时变得更加高效，还可以极大地提升开发效率，并且减少各类数据不一致问题引发的 bug。而与其它 API 规范相比，GraphQL 和客户端缓存的结合可以让这些优势再次被放大。
@@ -81,13 +78,9 @@ Normalization 一般指将各种形式的数据转化为统一标准格式的过
 {
   "id": "1",
   "name": "Adam",
-  "posts": [
-    { "id": "1", "title": "Adam's post" }
-  ]
-}
-
-// get posts
-[
+  "posts": [{ "id": "1", "title": "Adam's post" }]
+}[
+  // get posts
   { "id": "1", "title": "Adam's post" }
 ]
 ```
@@ -157,9 +150,7 @@ query {
 ```json
 // 查询结果
 {
-  "getPosts": [
-    { "id": "1", "title": "Adam's post" }
-  ]
+  "getPosts": [{ "id": "1", "title": "Adam's post" }]
 }
 ```
 
@@ -248,19 +239,19 @@ smart-cache-invalidation 提供了三种清理 API：
 
 ```js
 // 清理某一类型的数据，例如所有 Post 数据
-client.deleteCache({ typeName: 'Post' })
+client.deleteCache({ typeName: "Post" });
 
 // 清理某一特定的数据，例如 id 为 1 的 Post
 client.deleteCache({
-  typeName: 'Post',
+  typeName: "Post",
   value: {
-    __typename: 'Post',
-    id: '1',
+    __typename: "Post",
+    id: "1",
   },
-})
+});
 
 // 清理某一特定的 query
-client.deleteCache({ query: 'getPosts' })
+client.deleteCache({ query: "getPosts" });
 ```
 
 这三种使用方式分别对应不同的使用场景：
@@ -287,7 +278,7 @@ type User {
 
 当用户新发布一篇文章后，我们会清理所有 Post 相关的缓存，此时我们需要一种更高效、直接的方式知道 User 类型和 Post 类型存在依赖关系，当 Post 相关数据缓存失效时 User 数据也应该失效以便更新。
 
-幸运的是我们从静态的 GraphQL schema 中就可以得到这一依赖关系，smart-cache-invalidation 提供了一个从 schema 中生成依赖关系的 CLI  工具，当然使用者也可以手动编写依赖关系并传入 smart-cache-invalidation 中。
+幸运的是我们从静态的 GraphQL schema 中就可以得到这一依赖关系，smart-cache-invalidation 提供了一个从 schema 中生成依赖关系的 CLI 工具，当然使用者也可以手动编写依赖关系并传入 smart-cache-invalidation 中。
 
 ### 惰性重新获取数据
 

@@ -3,11 +3,10 @@ title = "rrweb：打开 web 页面录制与回放的黑盒子"
 date = 2019-03-08
 category = "rrweb"
 
-[taxonomies]
-tags = ["rrweb"]
 +++
 
 前段时间开源了我们的 web 录制、回放基础库 [rrweb](https://www.rrweb.io)，它可以将页面中的 DOM 以及用户操作保存为可序列化的数据，以实现远程回放。
+
 <!-- more -->
 
 研发这一工具起初是为了解决我们在客户环境 debug 时遇到的一些问题。
@@ -57,7 +56,7 @@ document.replaceChild(docEl, document.documentElement);
 
 1. 去脚本化，被录制页面中的所有 JavaScript 都不应该被执行。
 2. 记录没有反映在 HTML 中的视图状态。例如 `<input type="text" />` 输入后的值不会反映在其 HTML 中，我们需要读取其 value 值并加以记录。
-3. 相对路径转换为绝对路径。回放时页面 URL为重放页面的地址，如果被录制页面中有一些相对路径就会产生错误。
+3. 相对路径转换为绝对路径。回放时页面 URL 为重放页面的地址，如果被录制页面中有一些相对路径就会产生错误。
 4. 尽量记录 CSS 样式表的内容。如果被录制页面加载了一些同源的样式表，我们则可以获取到解析好的 CSS rules，录制时将能获取到的样式都 inline 化，这样可以让一些内网环境（如 localhost）的录制也有比较好的回放效果。
 
 ## 初次尝试：定时快照
@@ -117,10 +116,10 @@ document.replaceChild(docEl, document.documentElement);
 
 ```javascript
 type clickOp = {
-  source: 'MouseInteraction';
-  type: 'Click';
-  node: HTMLButtonElement;
-}
+  source: "MouseInteraction",
+  type: "Click",
+  node: HTMLButtonElement,
+};
 ```
 
 再通过 `clickOp.node.click()` 就能将操作再执行一次。
@@ -131,10 +130,10 @@ type clickOp = {
 
 ```typescript
 type clickSnapshot = {
-  source: 'MouseInteraction';
-  type: 'Click';
+  source: "MouseInteraction";
+  type: "Click";
   id: Number;
-}
+};
 ```
 
 ### DOM 变动
@@ -228,6 +227,6 @@ body
 
 作为 SmartX 的前端团队，我们也在不断思考如何更好地进行企业级 Web 应用的开发，持续不断创新，提升用户体验。
 
-在我们的理解中，用户体验也应该包含用户遇到问题时我们如何快速 debug 和修复，而这对于内网部署并且逻辑非常复杂的应用而言并非易事。 
+在我们的理解中，用户体验也应该包含用户遇到问题时我们如何快速 debug 和修复，而这对于内网部署并且逻辑非常复杂的应用而言并非易事。
 
 rrweb 就是我们在不断尝试解决这一问题后衍生出的技术工具。我们将它开源是希望能够在更多场景中发挥它的作用，同时也希望更多优秀的开发者看到我们在前端开发中的实践和经验。之后也会分享更多我们在打磨高质量企业级前端项目过程中的心得，希望对大家有所帮助。

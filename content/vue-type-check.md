@@ -3,9 +3,6 @@ title = "vue-type-check: type checking in the template part"
 date = 2019-10-02
 category = "Vue"
 
-[taxonomies]
-tags = ["Vue", "Typescript"]
-
 +++
 
 Nowadays more people start trying to build Vue project with Typescript. Vue itself also provides better support to Typescript such as the vue-class-component lib and rewriting version 3.0's codebase in Typescript.
@@ -39,14 +36,14 @@ export default Vue.extend({
   name: "app",
   data() {
     return {
-      message: "Hello World!"
+      message: "Hello World!",
     };
   },
   methods: {
     printMessage() {
       console.log(this.message.toFixed(1));
-    }
-  }
+    },
+  },
 });
 </script>
 ```
