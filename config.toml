@@ -18,6 +18,10 @@ build_search_index = false
 
 theme = "tale-zola"
 
+[markdown]
+highlight_code = true
+highlight_theme = "ayu-mirage"
+
 [extra]
 author = "yz-yu"
 
