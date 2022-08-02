@@ -38,7 +38,7 @@ category = "Sunmao"
 
 另一方面，Sunmao 中为了降低应用构建者的开发难度，设计了一套[高效的响应式状态管理机制](https://github.com/smartxworks/sunmao-ui/issues/30)，我们会在一篇单独的文章中分享它的设计细节。
 
-眼下，可以简单的理解为 Sunmao 允许每个组件将自己的状态对外暴露，其余任意组件可以访问该状态并建立依赖关系，当状态发生变更时自动重新渲染。
+眼下可以简单的理解为 Sunmao 允许每个组件将自己的状态对外暴露，其余任意组件可以访问该状态并建立依赖关系，当状态发生变更时自动重新渲染。
 
 例如一个 id 为 demo_input 的输入框对外暴露了`当前输入内容`这一状态，另一个 id 为 demo_text 的文本组件响应式的展示了当前输入内容的长度。
 
@@ -175,7 +175,7 @@ const numberSchema = builder.Number(); // typeof numberSchema -> TNumber
 
 这里的关键技巧是 `return schema as any` 的处理。在 `this.Create` 的调用中，并没有真正传入 `static` 字段。但当调用 `Number` 时，期望 `this.Create` 的泛型返回 `TNumber` 类型，包含 `static` 字段。
 
-所以正常情况下，`this.Create` 无法通过类型校验，而 `as any` 的断言可以欺骗编译器，使它认为我们返回了包含 `static` 的 `TNumber` 类型，但在运行时并没有真正的引入额外的 `static` 字段。
+正常情况下，`this.Create` 无法通过类型校验，而 `as any` 的断言可以欺骗编译器，使它认为我们返回了包含 `static` 的 `TNumber` 类型，但在运行时并没有真正的引入额外的 `static` 字段。
 
 此时，运行时对象的 `numberSchema` 的 TS 类型已经指向了 TNumber，而 `TNumber['static']` 指向的就是最终期望的 `number` 类型。
 
@@ -219,7 +219,7 @@ class TypeBuilder {
 
 当然在实际使用的过程中还有许多的细节，例如 JSON schema 除基础类型信息之外，还支持配置许多其他附加信息；以及更复杂的 JSON schema 类型 AnyOf、OneOf 等如何与 TS 类型结合。
 
-在 Sunmao 中，我们最终使用的是更为完善的开源项目 [typebox](https://github.com/sinclairzx81/typebox) 作为 TypeBuilder。
+所以在 Sunmao 中，我们最终使用的是更为完善的开源项目 [typebox](https://github.com/sinclairzx81/typebox) 实现 TypeBuilder。
 
 ## 在 JS 运行时中推断类型
 
@@ -229,7 +229,7 @@ class TypeBuilder {
 
 <img src="/images/sunmao-expression.png" width="500px" />
 
-表达式的灵活之处在于支持任意合法的 JS 语法，所以也可以编写更为复杂一些的多行表达式：
+表达式的灵活之处在于支持任意合法的 JS 语法，例如编写更为复杂一些的多行表达式：
 
 <!-- prettier-ignore -->
 ```js
@@ -253,19 +253,19 @@ class TypeBuilder {
 
 值得注意的是，当 `response` 传入 string 类型的变量使，`res` 的类型也被推断为了 string，而当传入值变为 number，返回值的推断结果也变为了 number。这与 `response` 函数的内部实现逻辑是相符的。
 
-并且表达式中包含的只是常规的 JS 语法，而不是拥有类型的 TS 代码，那么 Sunmao 是如何从中推断类型的呢？实际上我们使用了 JS 代码分析引擎 [tern](https://ternjs.net/) 来实现这一点。
+但表达式中包含的只是常规的 JS 语法，而不是拥有类型的 TS 代码，Sunmao 是如何从中推断类型的呢？实际上我们使用了 JS 代码分析引擎 [tern](https://ternjs.net/) 来实现这一点。
 
 ### Tern 的由来
 
 Tern 的作者 Marijn Haverbeke 也是前端领域使用广泛的开源项目 [CodeMirror](https://codemirror.net/)、[Acorn](https://github.com/acornjs/acorn) 等项目的作者。
 
-Marijn 在开发基于运行在 Web 中的代码编辑器 CodeMirror 的过程中产生了对于“代码补全”这一功能的需求，因此开发了 Tern，用于分析 JS 代码，并推断代码中的类型，最终实现代码补全。
+Marijn 在开发基于运行在 Web 中的代码编辑器 CodeMirror 的过程中产生了对于“代码补全”这一功能的需求，由此开发了 Tern，用于分析 JS 代码并推断代码中的类型，最终实现代码补全。
 
-又在开发 Tern 的过程中发现编辑器场景下，代码通常处于不完整且语法不合法的状态，因此又开发了能够解析“不合法 JS”的 JS parser：Acorn。
+在开发 Tern 的过程中 Marijn 又发现在编辑器场景下，代码通常处于不完整且语法不合法的状态，因此开发了能够解析“不合法 JS”的 JS parser：Acorn。
 
 值得一提的是，Tern 中所实现的类型推断算法主要参考了论文[《Fast and Precise Hybrid Type Inference for JavaScript》](https://rfrn.org/~shu/papers/pldi12.pdf)，该篇论文的作者是当时在 Mozilla 负责开发火狐浏览器 JS 引擎 SpiderMonkey 的工程师 Brian Hackett 和 Shu-yu Guo，论文中描述了 SpiderMonkey 所使用的类型推断算法。
 
-不过 Marijn 也在自己的[博客](https://marijnhaverbeke.nl/blog/tern.html)中介绍，Tern 的场景与 SpiderMonkey 并不相同。Tern 从编辑器补全的场景出发，可以实现的更为激进，使用更多近似、牺牲一定精度以提供更好的推断结果。
+不过 Marijn 也在自己的[博客](https://marijnhaverbeke.nl/blog/tern.html)中介绍，Tern 的场景与 SpiderMonkey 并不相同。Tern 从编辑器补全的场景出发，可以实现的更为激进，使用更多近似、牺牲一定精度以提供更好的推断结果或更少的性能开销。
 
 ### Tern 的类型推断算法。
 
