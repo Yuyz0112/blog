@@ -251,7 +251,7 @@ class TypeBuilder {
 
 从演示中可以清晰的看到，对函数 `response` 返回的变量 `res` 我们准确推断了其类型，从而进一步补全了对应类型变量的方法。
 
-值得注意的是，当 `response` 传入 string 类型的变量使，`res` 的类型也被推断为了 string，而当传入值变为 number，返回值的推断结果也变为了 number。这与 `response` 函数的内部实现逻辑是相符的。
+值得注意的是，当 `response` 传入 string 类型的变量时，`res` 的类型也被推断为了 string，而当传入值变为 number，返回值的推断结果也变为了 number。这与 `response` 函数的内部实现逻辑是相符的。
 
 但表达式中包含的只是常规的 JS 语法，而不是拥有类型的 TS 代码，Sunmao 是如何从中推断类型的呢？实际上我们使用了 JS 代码分析引擎 [tern](https://ternjs.net/) 来实现这一点。
 
