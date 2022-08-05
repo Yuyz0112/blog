@@ -221,6 +221,37 @@ class TypeBuilder {
 
 所以在 Sunmao 中，我们最终使用的是更为完善的开源项目 [typebox](https://github.com/sinclairzx81/typebox) 实现 TypeBuilder。
 
+一个更复杂的 schema 示例：
+
+```ts
+const inputSchema = Type.Object({
+  defaultValue: Type.String(),
+  size: Type.StringEnum(["sm", "md", "lg"]),
+});
+/* JSON schema
+{
+  "type": "object",
+  "properties": {
+    "defaultValue": {
+      "type": "string"
+    },
+    "size": {
+      "type": "string",
+      "enum": ["sm", "md", "lg"]
+    }
+  }
+}
+*/
+
+type InputProps = Static<typeof inputSchema>;
+/* TS type
+{
+  defaultValue: string;
+  size: "sm" | "md" | "lg";
+};
+*/
+```
+
 ## 在 JS 运行时中推断类型
 
 实现了 JSON schema 与 TS 的结合之后，我们进一步思考如何在编辑器的 JS 运行时中推断类型，为应用构建者提供自动补全等特性。
