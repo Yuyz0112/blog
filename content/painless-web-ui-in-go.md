@@ -176,4 +176,4 @@ Although these projects inspired us, we think the headless Sunmao proposal has m
 
 The code in the demo video can be found [here](https://github.com/Yuyz0112/sunmao-ui-go-binding), and it's just a POC code and every API is not stabilized.
 
-We've opened a discussion in Sunmao's Github repo, you can comment on it or join our slack channel to give your feedback about this idea.
+We've opened a [discussion](https://github.com/smartxworks/sunmao-ui/discussions/600) in Sunmao's Github repo, you can comment on it or join our slack channel to give your feedback about this idea.
