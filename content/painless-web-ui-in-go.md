@@ -113,7 +113,7 @@ To avoid learning these kinds of browser APIs, Sunmao let users describe logic i
 ]
 ```
 
-And it becomes easy to port to other programming languages:
+And it becomes easy to porting to other programming languages:
 
 ```go
 b.NewNotification().Id("test_notification")
