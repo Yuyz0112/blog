@@ -50,7 +50,7 @@ GraphQL 经常被打上“好东西，但是难以落地”的标签，很多尝
 
 ### **响应式的级联缓存**
 
-UI 里的数据管理是一个更复杂的话题，值得一篇[文章](http://www.myriptide.com/smart-cache-cn/)单独讨论。这里我尝试用一个简单的示例说明基于 GraphQL 为什么更容易实现一个好用的客户端缓存。
+UI 里的数据管理是一个更复杂的话题，值得一篇[文章](https://www.myriptide.com/smart-cache-cn/)单独讨论。这里我尝试用一个简单的示例说明基于 GraphQL 为什么更容易实现一个好用的客户端缓存。
 
 ![img](https://pic2.zhimg.com/80/v2-41ae618a24c5fcecaae657f8b3834fbf_720w.png)
 

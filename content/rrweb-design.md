@@ -106,7 +106,7 @@ document.replaceChild(docEl, document.documentElement);
 
 这样我们只需要在开始录制时制作一个完整的 DOM 快照，之后则记录所有的操作数据，这些操作数据我们称之为 Oplog（operations log），这一思路和 log-structured file system 是类似的。
 
-![1551818239259](http://temp.myriptide.com/blog/image.png)
+![1551818239259](https://pub-383785714b9a4e089e3ad5461fe6f396.r2.dev/rrweb-blog.png)
 
 ### 唯一标识
 

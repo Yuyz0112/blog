@@ -51,7 +51,7 @@ rrweb.record({
 function save() {
   const body = JSON.stringify({ events });
   events = [];
-  fetch("http://YOUR_BACKEND_API", {
+  fetch("https://YOUR_BACKEND_API", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
