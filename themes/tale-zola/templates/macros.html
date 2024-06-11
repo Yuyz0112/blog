@@ -23,7 +23,8 @@
 
 
 {% macro page_in_list(page) -%}
-<a href="{{ page.permalink | safe }}" class="catalogue-item">
+<a {% if page.extra.external_url -%}href="{{ page.extra.external_url }}" target="_blank" {% else
+  -%}href="{{ page.permalink | safe }}" {%- endif %} class="catalogue-item">
   <div>
     <time datetime="{{ page.date }}" class="catalogue-time">{{ page.date | date(format=config.extra.timeformat |
       default(value="%B %e, %Y")) }}</time>
@@ -36,16 +37,16 @@
 
 
 {% macro seo(
-  title="",
-  og_title="",
-  author="",
-  description="",
-  site_url="",
-  image="",
-  image_height="",
-  image_width="",
-  web_type="WebSite"
-  ) -%}
+title="",
+og_title="",
+author="",
+description="",
+site_url="",
+image="",
+image_height="",
+image_width="",
+web_type="WebSite"
+) -%}
 {% if title %}
 <title>{{ title }}</title>
 {% endif %}
@@ -58,7 +59,7 @@
 <meta name="author" content="{{ author }}">
 {% endif %}
 
-<meta property="og:locale" content="{{ config.extra.seo.og_locale | default(value="en-US") }}">
+<meta property="og:locale" content="{{ config.extra.seo.og_locale | default(value=" en-US") }}">
 
 {% if description %}
 <meta name="description" content="{{ description }}">
@@ -86,7 +87,7 @@
 
 {% if page.date %}
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="{{ page.date | date(format="%+") }}">
+<meta property="article:published_time" content="{{ page.date | date(format=" %+") }}">
 {% endif %}
 
 {% if page.earlier %}
