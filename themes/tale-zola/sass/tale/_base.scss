@@ -11,7 +11,10 @@ body {
 }
 
 html {
-  font-family: $serif-primary;
+  font-family: JetBrains Mono,Fira Code,Cascadia Code,Source Code Pro,Consolas,monospace;
+  font-variant-ligatures: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
   overflow-y: scroll;
 
